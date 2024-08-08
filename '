@@ -1,0 +1,9 @@
+import pandas as pd
+
+def re_partition(load_dt, from_path='/data/movie/extract'):
+    print("+"* 100)
+    print("enter repartion")
+    HOME_DIR = os.path.expanduser("~")
+    df = pd.read_parquet(f'{HOME_DIR}/tmp/sparkdata/{load_dt}')
+
+    df.to_parquet(f'{HOME_DIR}/tmp/sparkpartition/{load_dt}', partition_cols=['load_dt','multiMovieYn','repNationCd'])
